@@ -1,13 +1,14 @@
 1.  Create minimum viable product (MVP!)
 	a. Have a rough draft layout and design
-	b. Hardcode 7 recipies in scripts
-	c.  Hardcode "number of people" value to 4
+	b. Hard code 7 recipes in scripts
+	c.  Hard code "number of people" value to 4
 	d.  Click button to create and display shopping list of all 7 recipies
 
-2.  Build out reciepe and quantity functionality
-	a.  Increase hardcoded reciepes to 30
-	b.  Allow for user inputed "number of people"
+2.  Build out recipe and quantity functionality
+	a.  Increase hard coded recipes to 30
+	b.  Allow for user to input "number of people"
 
-3.  Build back end
-	a.  Setup database for receipe storage
-	b.  Get website hosted
+3.  Build back end and finish functionality
+	a.  Setup database for recipe storage
+	b.  Create user recipe submission functionality
+	c.  Get website hosted
