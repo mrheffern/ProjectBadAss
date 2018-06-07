@@ -1,0 +1,5 @@
+1.  Create minimum viable product (MVP!)
+	a. Have a completed layout and design
+	b. Hardcode 7 reciepies in scripts
+	c.  Hardcode "number of people" value to 2
+	d.  Click button to create and display shopping list of all 7 reciepies
