@@ -1,35 +1,35 @@
 int recipes = {
   cheesey chicken : {
-    ingrediant1 : {
+    ingredient1 : {
       "name" : "rice",
       "amount" : 0.25,
       "units" : "cup(s)"
     }
 
-    ingrediant2 : {
+    ingredient2 : {
       "name" : "chicken",
       "amount" : 1,
       "units" : "breast(s)"
     }
 
-    ingrediant3 : {
+    ingredient3 : {
       "name" : "cheese soup",
       "amount" : 0.5,
       "units" : "can(s)"
     }
 
-    ingrediant4 : {
+    ingredient4 : {
       "name" : "milk",
       "amount" : 0.25,
       "units" : "cup(s)"
     }
 
-    ingrediant5 : {
+    ingredient5 : {
       "name" : "pepper",
       "amount" : "to taste",
     }
 
-    ingrediant6 : {
+    ingredient6 : {
       "name" : "salt",
       "amount" : "to taste"
     }
