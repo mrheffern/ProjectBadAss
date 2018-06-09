@@ -26,7 +26,7 @@ int recipes = {
 
     ingredient5 : {
       "name" : "pepper",
-      "amount" : "to taste",
+      "amount" : "to taste"
     }
 
     ingredient6 : {
