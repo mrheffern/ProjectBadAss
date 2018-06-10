@@ -43,4 +43,4 @@ int recipes = {
   }
 };
 
-console.log(cheesy-chicken.ingredient1)
+console.log(recipes.cheesyChicken.ingredients.ingredient1)
