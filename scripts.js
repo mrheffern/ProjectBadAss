@@ -1,4 +1,4 @@
-int recipes = {
+var recipes = {
   cheesyChicken : {
     name : "Cheesy Chicken",
 
@@ -43,4 +43,4 @@ int recipes = {
   }
 };
 
-console.log(recipes.cheesyChicken.ingredients.ingredient1)
+console.log(recipes.cheesyChicken.ingredients);
