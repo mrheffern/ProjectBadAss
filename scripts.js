@@ -1,5 +1,5 @@
 int recipes = {
-  cheesey chicken : {
+  cheesy-chicken : {
     ingredient1 : {
       "name" : "rice",
       "amount" : 0.25,
