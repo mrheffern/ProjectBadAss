@@ -1,4 +1,4 @@
-int recipes = {
+var recipes = {
   cheesyChicken : {
     name : "Cheesy Chicken",
 
@@ -43,4 +43,11 @@ int recipes = {
   }
 };
 
-console.log(cheesy-chicken.ingredient1)
+var testLog = "";
+
+for (var key in recipes.cheesyChicken.ingredients) {
+//  testLog = key;
+  for (key2 in recipes.cheesyChicken.ingredients[key]) {
+    console.log(key2 + ": " + recipes.cheesyChicken.ingredients[key][key2]);
+  };
+};
