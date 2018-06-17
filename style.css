@@ -1,0 +1,172 @@
+body {
+    margin: 0;
+    padding-top: : 70px;
+    font-family: Quicksand;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    padding: 10px 100px;
+    box-sizing: border-box;
+    transition: .3s;
+}
+
+nav.black {
+    background: rgba(0,0,0,0.8);
+    height: 100px;
+    padding: 10px 100px;
+}
+
+
+
+nav .logo {
+    padding: 22px 20px;
+    height: 80px;
+    float: left;
+    font-size: 24px;
+    transition: .3s;
+}
+
+nav.black .logo {
+    color: #fff;
+}
+
+nav ul {
+    list-style: none;
+    float: right;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    list-style: none;
+}
+
+nav ul li a {
+    line-height: 80px;
+    color: #151515;
+    padding: 12px 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+nav.black ul li a {
+    color: #fff;
+}
+
+nav ul li a:focus {
+    outline: none;
+}
+
+nav ul li a.active {
+    background: #E2472F;
+    color: #fff;
+    border-radius: 6px;
+}
+
+section.sec1 {
+    width: 100%;
+    height: 100vh;
+    margin-top: 100px;
+    background: url(img/chicken.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.content {
+    margin-top: 80px;
+}
+
+.content p {
+    width: 900px;
+    margin: 30px auto;
+    text-align: justify;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+/* Juat for Fallback layout */
+
+main {
+    max-width: 520px;
+    margin: 0 auto;
+}
+article {
+    margin: 1rem 0;
+}
+
+@supports (display: grid) {
+  main {
+    max-width: 10000px;
+    margin: 0;
+  }
+  article {
+    margin: 0;
+    }
+    .meals {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-gap: 1rem;
+  }
+}
+
+.meals {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); /*each colum is a min of 300px and a max of sharing the space so each one is the same as each other */
+    grid-gap: 1rem;
+    margin-bottom: 2rem;
+}
+.recipe {
+    display: flex;
+    flex-flow: column;
+    border: 3px solid black;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+.recipe h1 {
+  text-align: center;
+}
+.recipe > img {
+  order: -1;
+  align-self: center;
+}
+
+.recipe > button {
+  margin-top: auto;
+  background: #E2472F;
+  color: #fff;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 1rem;
+}
+
+article {
+  margin: 0;
+}
+
+footer h4 {
+  color: #fff;
+}
+footer.first {
+  text-align: center;
+  background: rgba(0,0,0,0.8);
+  background opacity: .3;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+footer a {
+  padding: 10px;
+  display: inline-block;
+  color: #fff;
+}
+footer.second {
+  text-align: center;
+}
+
+}
