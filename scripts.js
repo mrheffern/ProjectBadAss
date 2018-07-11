@@ -1,4 +1,40 @@
 var recipes = {
+  chickenRiceBowls : {
+    name : "Chicken Rice Bowls",
+
+    healthy : true,
+
+    ingredients : {
+
+      ingredient1 : {
+        name : "chicken",
+        amount : 1,
+        units : "breast(s)"
+      }
+    }
+  },
+
+  cereal : {
+    name : "cereal",
+
+    healthy : false,
+
+    ingredients : {
+
+      ingredient1 : {
+        name : "cereal",
+        amount: "1",
+        units: "bowl(s)"
+      },
+
+      ingredient2 : {
+        name: "milk",
+        amount: 3,
+        units: "cup(s)"
+      }
+    }
+  },
+
   cheesyChicken : {
     name : "Cheesy Chicken",
 
@@ -45,19 +81,25 @@ var recipes = {
 
 var testLog = "Woops";
 var amountWithUnits = "";
-// loops through each ingredient in cheesyChicken
-for (var key in recipes.cheesyChicken.ingredients) {
-  // prints name of ingredient to console
-  testLog = "Name: " + recipes.cheesyChicken.ingredients[key]["name"];
-  console.log(testLog);
-  // saves amount of ingredient needed
-  testLog = "Amount: " + recipes.cheesyChicken.ingredients[key]["amount"];
-  // checks if ingredient has "units" property. if so units is appened to "testLog"
-  if (recipes.cheesyChicken.ingredients[key].hasOwnProperty("units")) {
-    testLog = testLog + " " + recipes.cheesyChicken.ingredients[key]["units"];
+var shoppingList = {};
+
+// loops through each recipe
+for (var item in recipes){
+
+  // loops through each ingredient in current recipe
+  for (var key in recipes[item].ingredients) {
+    // prints name of ingredient to console
+    testLog = "Name: " + recipes[item].ingredients[key]["name"];
+    console.log(testLog);
+    // saves amount of ingredient needed
+    testLog = "Amount: " + recipes[item].ingredients[key]["amount"];
+    // checks if ingredient has "units" property. if so units is appened to "testLog"
+    if (recipes[item].ingredients[key].hasOwnProperty("units")) {
+      testLog = testLog + " " + recipes[item].ingredients[key]["units"];
+    }
+    // prints amount of ingredient and units
+    console.log(testLog);
   }
-  // prints amount of ingredient and units
-  console.log(testLog);
 };
 console.log("damn dog");
 //loop through recipe --> loop ingrients --> loop ingredientX
