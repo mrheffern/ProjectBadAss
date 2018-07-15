@@ -1,11 +1,35 @@
 var recipes = {
+  scrambledEggs : {
+    name : "Scrambled Eggs",
+    healthy : true,
+    ingredients : {
+      ingredient1 : {
+        name : "eggs",
+        amount : 2
+      },
+
+      ingredient2 : {
+        name : "milk",
+        amount : "to taste"
+      }
+    }
+  },
+
+  cheese : {
+    name : "Scrambled Eggs",
+    healthy : true,
+    ingredients : {
+      ingredient1 : {
+        name : "eggs",
+        amount : 2
+      }
+    }
+  },
+
   chickenRiceBowls : {
     name : "Chicken Rice Bowls",
-
     healthy : true,
-
     ingredients : {
-
       ingredient1 : {
         name : "chicken",
         amount : 1,
@@ -23,7 +47,7 @@ var recipes = {
 
       ingredient1 : {
         name : "cereal",
-        amount: "1",
+        amount: 1,
         units: "bowl(s)"
       },
 
@@ -79,28 +103,43 @@ var recipes = {
   }
 };
 
-var testLog = "Woops";
-var amountWithUnits = "";
+var x = 1;
 var shoppingList = {};
-
 // loops through each recipe
 for (var item in recipes){
-
   // loops through each ingredient in current recipe
   for (var key in recipes[item].ingredients) {
-    // prints name of ingredient to console
-    testLog = "Name: " + recipes[item].ingredients[key]["name"];
-    console.log(testLog);
-    // saves amount of ingredient needed
-    testLog = "Amount: " + recipes[item].ingredients[key]["amount"];
-    // checks if ingredient has "units" property. if so units is appened to "testLog"
-    if (recipes[item].ingredients[key].hasOwnProperty("units")) {
-      testLog = testLog + " " + recipes[item].ingredients[key]["units"];
+    // checks to see if item already exist on shopping list
+    if (shoppingList.hasOwnProperty(recipes[item].ingredients[key].name)) {
+//      console.log("Item found on list");
+      // doesnt add amount if value is "to taste"
+      if (typeof recipes[item].ingredients[key].amount != "string") {
+        // if item on grocery list is "to taste" it is replaced with a number value
+        if (typeof shoppingList[recipes[item].ingredients[key].name] == "string") {
+          shoppingList[recipes[item].ingredients[key].name] = recipes[item].ingredients[key].amount;
+        }
+        // if both ingredients are numbers then add them
+        else {
+          shoppingList[recipes[item].ingredients[key].name] += recipes[item].ingredients[key].amount;
+        }
+      }
+//      console.log("if!");
     }
-    // prints amount of ingredient and units
-    console.log(testLog);
+    // if not on list item is added
+    else {
+      shoppingList[recipes[item].ingredients[key].name] = recipes[item].ingredients[key].amount;
+//      console.log("Item NOT found on list");
+    }
+    x += 1;
   }
-};
-console.log("damn dog");
-//loop through recipe --> loop ingrients --> loop ingredientX
-//store name --> if there is units conc with amount --> display
+}
+console.log("\n\n\n");
+for (var listItem in shoppingList) {
+  console.log(listItem + " " + shoppingList[listItem]);
+}
+
+// grocerryList = {
+//  item1 : {
+//    name
+//}
+// }
