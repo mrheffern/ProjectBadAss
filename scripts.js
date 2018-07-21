@@ -103,40 +103,49 @@ var recipes = {
   }
 };
 
+
 var x = 1;
 var shoppingList = {};
 // loops through each recipe
 for (var item in recipes){
   // loops through each ingredient in current recipe
   for (var key in recipes[item].ingredients) {
+    var currentIngredientName = recipes[item].ingredients[key].name;
+    var currentIngredientAmount = recipes[item].ingredients[key].amount;
     // checks to see if item already exist on shopping list
-    if (shoppingList.hasOwnProperty(recipes[item].ingredients[key].name)) {
+    if (shoppingList.hasOwnProperty(currentIngredientName)) {
 //      console.log("Item found on list");
       // doesnt add amount if value is "to taste"
-      if (typeof recipes[item].ingredients[key].amount != "string") {
+      if (typeof currentIngredientAmount != "string") {
         // if item on grocery list is "to taste" it is replaced with a number value
-        if (typeof shoppingList[recipes[item].ingredients[key].name] == "string") {
-          shoppingList[recipes[item].ingredients[key].name] = recipes[item].ingredients[key].amount;
+        if (typeof shoppingList[currentIngredientName] == "string") {
+          shoppingList[currentIngredientName] = currentIngredientAmount;
         }
         // if both ingredients are numbers then add them
         else {
-          shoppingList[recipes[item].ingredients[key].name] += recipes[item].ingredients[key].amount;
+          shoppingList[currentIngredientName] += currentIngredientAmount;
         }
       }
 //      console.log("if!");
     }
     // if not on list item is added
     else {
-      shoppingList[recipes[item].ingredients[key].name] = recipes[item].ingredients[key].amount;
+      shoppingList[currentIngredientName] = currentIngredientAmount;
 //      console.log("Item NOT found on list");
     }
     x += 1;
   }
 }
+
+
+
+
 console.log("\n\n\n");
 for (var listItem in shoppingList) {
   console.log(listItem + " " + shoppingList[listItem]);
 }
+
+
 
 // grocerryList = {
 //  item1 : {
