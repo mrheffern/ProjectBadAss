@@ -1,6 +1,7 @@
 <html>
   <head>
       <meta charset="utf-8">
+      	<meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title>Project Badass</title>
       <link rel="stylesheet" type="text/css" href="style.css">
       <link href="https://fonts.googleapis.com/css?family=Quicksand:500" rel="stylesheet">
@@ -107,12 +108,34 @@
         </div>
 <div>
 
+
+              <div>
+                <hr />
+                <div class="clearfix-padding"> </div>
+                <section class="application">
+                  <h1>Project Badass</h1>
+                  <p>Use the slider to select number of people eating & use the dropdown to select the recipes </p>
+                  <div class="slide-container">
+                  <input type="range" min="1" max="100" value="1" class="slider" id="myrange">
+                </div>
+                <div class="dropdown">
+                  <button class="dropbtn">Recipes</button>
+                  <div class="dropdown-content">
+                    <a href="#">Cheesey Chicken</a>
+                    <a href="#">Chicken Bowls</a>
+                    <a href="#">Chicken Chicken</a>
+                  </div>
+                </div>
+                </section>
+                <hr />
+              </div>
+
 <!--new stuff 6/18 tags need css -->
           <div class="clearfix-padding"></div>
             <section class="left-col">
               <h1> Leave FEEDback </h1>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                sed do eiusmod <del> tempor incididunt</del> <ins>ut labore et</ins> dolore magna aliqua.
                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                  ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
                   voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
@@ -121,20 +144,20 @@
               </p>
             </section>
             <section class="sidebar">
-              <form>
-                <label for="name">
+              <form action="submit-form-data"> <!--where is the data going to go? maybe make a project badass email address.. -->
+                <label for="name" id="name-label">
                   Name
                 </label>
                 <input type="text" id="name">
 
-                <label for="email">
+                <label for="email" id="email-label">
                   Email
                 </label>
 
                 <input type="email" id="email">
 
-                <label for="message">
-                  Contact
+                <label for="message" id="feedback-label">
+                 Feedback
                 </label>
 
                 <textarea name="message" id="message" rows="5" cols="50"></textarea>
@@ -169,10 +192,11 @@
 
             </div>
 
-        <div>
 
-          <!-- End New STuff 6/18 -->
-<div class="clearfix-padding"> </div>
+
+<!-- End New STuff 6/18 -->
+<div>
+    <div class="clearfix-padding"> </div>
           <section class="social">
             <div class="container">
                   <h4>Follow Project Badass</h4>

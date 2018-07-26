@@ -32,6 +32,7 @@ nav .logo {
     float: left;
     font-size: 24px;
     transition: .3s;
+
 }
 
 nav.black .logo {
@@ -100,7 +101,7 @@ section.sec1 {
     margin-left: 7rem;
 }
 
-/* Juat for Fallback layout */
+/* Just for Fallback layout */
 
 main {
     max-width: 520px;
@@ -188,28 +189,27 @@ row in the grid, super aannyoing*/
     height: auto; */
     margin-right: 7rem;
     width: 30%;
-    border:2px solid #dd1343;
-    padding:2rem;
+    border: 2px solid #dd1343;
+    padding: 2rem;
+    border-radius: 1rem;
+  }
 
-      input, textarea{
+input, textarea{
         display: block;
         width: 100%;
         border: 2px solid;
         padding: .5rem;
         font-size: 18px;
-        border-radius: 5px;
-
       }
-}
-
 #sendBtn{
       border: 0;
       background: #00c943;
       padding: .5rem;
       color: #fff;
-      margin:1 rem 0;
+      margin: 1rem 0;
       text-transform: uppercase;
       cursor: pointer;
+      border-radius: .5rem;
 }
 
 
@@ -221,10 +221,11 @@ label {
   clear: left;
 }
 
-##email {
-  float: left;
-  text-align: left;
-
+#email-label{
+  padding-top: 15px;
+}
+#feedback-label{
+  padding-top: 15px;
 }
 
 input, textarea {
@@ -236,6 +237,101 @@ input, textarea {
   text-align: center;
 }
 
+/* Application inputs */
+
+.application {
+  margin-left: 7rem;
+}
+
+.slidecontainer {
+    width: 40%;
+    border: 2px solid #dd1343;
+    padding: 2rem;
+    border-radius: 1rem;
+
+}
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 40%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+/*Recipe Dropdown*/
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    padding-top: 1rem;
+
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    max-height:250px;/* you can change as you need it */
+   overflow:auto;/* to get scroll */
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
 .social h4 {
   color: #fff;
 }
@@ -255,7 +351,8 @@ input, textarea {
 
 }
 .social a {
-  padding: 10px;
+  padding-left: 5rem;
+  padding-right: 5rem;
   display: inline-block;
   color: #fff;
 }
