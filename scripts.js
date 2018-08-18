@@ -1,35 +1,36 @@
 
-
-var x = 1;
-var shoppingList = {};
-// loops through each recipe
-for (var item in recipes){
-  // loops through each ingredient in current recipe
-  for (var key in recipes[item].ingredients) {
-    var currentIngredientName = recipes[item].ingredients[key].name;
-    var currentIngredientAmount = recipes[item].ingredients[key].amount;
-    // checks to see if item already exist on shopping list
-    if (shoppingList.hasOwnProperty(currentIngredientName)) {
-//      console.log("Item found on list");
-      // doesnt add amount if value is "to taste"
-      if (typeof currentIngredientAmount != "string") {
-        // if item on grocery list is "to taste" it is replaced with a number value
-        if (typeof shoppingList[currentIngredientName] == "string") {
-          shoppingList[currentIngredientName] = currentIngredientAmount;
+function refactorThisGarbage(){
+  var x = 1;
+  var shoppingList = {};
+  // loops through each recipe
+  for (var item in recipes){
+    // loops through each ingredient in current recipe
+    for (var key in recipes[item].ingredients) {
+      var currentIngredientName = recipes[item].ingredients[key].name;
+      var currentIngredientAmount = recipes[item].ingredients[key].amount;
+      // checks to see if item already exist on shopping list
+      if (shoppingList.hasOwnProperty(currentIngredientName)) {
+        //      console.log("Item found on list");
+        // doesnt add amount if value is "to taste"
+        if (typeof currentIngredientAmount != "string") {
+          // if item on grocery list is "to taste" it is replaced with a number value
+          if (typeof shoppingList[currentIngredientName] == "string") {
+            shoppingList[currentIngredientName] = currentIngredientAmount;
+          }
+          // if both ingredients are numbers then add them
+          else {
+            shoppingList[currentIngredientName] += currentIngredientAmount;
+          }
         }
-        // if both ingredients are numbers then add them
-        else {
-          shoppingList[currentIngredientName] += currentIngredientAmount;
-        }
+        //      console.log("if!");
       }
-//      console.log("if!");
+      // if not on list item is added
+      else {
+        shoppingList[currentIngredientName] = currentIngredientAmount;
+        //      console.log("Item NOT found on list");
+      }
+      x += 1;
     }
-    // if not on list item is added
-    else {
-      shoppingList[currentIngredientName] = currentIngredientAmount;
-//      console.log("Item NOT found on list");
-    }
-    x += 1;
   }
 }
 
@@ -41,6 +42,7 @@ for (var listItem in shoppingList) {
   console.log(listItem + " " + shoppingList[listItem]);
 }
 
+// creates and returns complete recipe object
 function createRecipes() {
   var recipes = {
     scrambledEggs : {
@@ -149,6 +151,7 @@ function createRecipes() {
   return recipes;
 }
 
+// creates object of ingredient keys and amount values
 function createItemList(recipes) {
   var x = 1;
   var shoppingList = {};
@@ -172,8 +175,6 @@ function main() {
   createGroceryList(createItemList(createRecipes()));
 }
 
-// grocerryList = {
-//  item1 : {
-//    name
-//}
-// }
+// 1. create recipe object
+// 2. create object containing needed ingredients, amounts, and units
+// 3. display groccery list
