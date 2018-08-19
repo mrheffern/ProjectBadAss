@@ -153,15 +153,21 @@ function createRecipes() {
 
 // creates object of ingredient keys and amount values
 function createItemList(recipes) {
+  var currentIngredientName = "";
+  var currentIngredientAmount = 0;
+  var ingredientDetails = {};
   var x = 1;
   var shoppingList = {};
   // loops through each recipe
   for (var item in recipes){
     // loops through each ingredient in current recipe
+    //
     for (var key in recipes[item].ingredients) {
-      var currentIngredientName = recipes[item].ingredients[key].name;
-      var currentIngredientAmount = recipes[item].ingredients[key].amount;
-      shoppingList[currentIngredientName] = currentIngredientAmount;
+      currentIngredientName = recipes[item].ingredients[key].name;
+      currentIngredientAmount = recipes[item].ingredients[key].amount;
+      currentIngredientUnits = recipes[item].ingredients[key].units;
+      ingredientDetails = {amount : currentIngredientAmount, units : currentIngredientUnits};
+      shoppingList[currentIngredientName] = ingredientDetails;
     }
   }
       // checks to see if item already exist on shopping list
@@ -178,3 +184,16 @@ function main() {
 // 1. create recipe object
 // 2. create object containing needed ingredients, amounts, and units
 // 3. display groccery list
+
+// grocceryList = {
+//  rice : {
+//    amount : 1,
+//    units : "cups"
+//  },
+//
+//  chicken : {
+//    amount : 2,
+//    units : "breasts"
+//  }
+//}
+//.......
