@@ -1,48 +1,3 @@
-
-function refactorThisGarbage(){
-  var x = 1;
-  var shoppingList = {};
-  // loops through each recipe
-  for (var item in recipes){
-    // loops through each ingredient in current recipe
-    for (var key in recipes[item].ingredients) {
-      var currentIngredientName = recipes[item].ingredients[key].name;
-      var currentIngredientAmount = recipes[item].ingredients[key].amount;
-      // checks to see if item already exist on shopping list
-      if (shoppingList.hasOwnProperty(currentIngredientName)) {
-        //      console.log("Item found on list");
-        // doesnt add amount if value is "to taste"
-        if (typeof currentIngredientAmount != "string") {
-          // if item on grocery list is "to taste" it is replaced with a number value
-          if (typeof shoppingList[currentIngredientName] == "string") {
-            shoppingList[currentIngredientName] = currentIngredientAmount;
-          }
-          // if both ingredients are numbers then add them
-          else {
-            shoppingList[currentIngredientName] += currentIngredientAmount;
-          }
-        }
-        //      console.log("if!");
-      }
-      // if not on list item is added
-      else {
-        shoppingList[currentIngredientName] = currentIngredientAmount;
-        //      console.log("Item NOT found on list");
-      }
-      x += 1;
-    }
-  }
-}
-
-
-
-
-console.log("\n\n\n");
-for (var listItem in shoppingList) {
-  console.log(listItem + " " + shoppingList[listItem]);
-}
-
-// creates and returns complete recipe object
 function createRecipes() {
   var recipes = {
     scrambledEggs : {
@@ -57,17 +12,6 @@ function createRecipes() {
         ingredient2 : {
           name : "milk",
           amount : "to taste"
-        }
-      }
-    },
-
-    cheese : {
-      name : "Scrambled Eggs",
-      healthy : true,
-      ingredients : {
-        ingredient1 : {
-          name : "eggs",
-          amount : 2
         }
       }
     },
@@ -156,21 +100,36 @@ function createItemList(recipes) {
   var currentIngredientName = "";
   var currentIngredientAmount = 0;
   var ingredientDetails = {};
-  var x = 1;
+  var ingredientCounter = 0;
   var shoppingList = {};
+  var ingredientFoundInList = 0;
   // loops through each recipe
   for (var item in recipes){
     // loops through each ingredient in current recipe
-    //
     for (var key in recipes[item].ingredients) {
+      ingredientFoundInList = 0;
       currentIngredientName = recipes[item].ingredients[key].name;
       currentIngredientAmount = recipes[item].ingredients[key].amount;
       currentIngredientUnits = recipes[item].ingredients[key].units;
-      ingredientDetails = {amount : currentIngredientAmount, units : currentIngredientUnits};
-      shoppingList[currentIngredientName] = ingredientDetails;
+      // loops through each item currently in grocery list to check if item is already on list in some amount
+      for (var shoppingListItem in shoppingList) {
+        // if item is on list mark item as found
+        if (shoppingList[shoppingListItem][name] == currentIngredientName) {
+          ingredientFoundInList = 1;
+        }
+      }
+      // if item has been found on list merely add new amount needed to existing amount
+      if (ingredientFoundInList) {
+        shoppingList[shoppingListItem][amount] += currentIngredientAmount;
+      }
+      // if item is not on list currently, copy ingredient information to grocery list
+      else {
+        shoppingList["ingredient" + ingredientCounter] = recipes[item].ingredients[key];
+      }
+      // after adding ingredient or increasing amount, increment ingredient counter
+      ingredientCounter++;
     }
   }
-      // checks to see if item already exist on shopping list
 }
 
 function createGroceryList(itemList) {
@@ -183,15 +142,23 @@ function main() {
 
 // 1. create recipe object
 // 2. create object containing needed ingredients, amounts, and units
+//  + loop through recipes book
+//  + loop through each recipe ingredients
+//  + loop through shoppingList
+//  - check if currentIngredientName is already in list
+//  - if it is, add amounts
+//  - if it is not, add to list as ingredientX
 // 3. display groccery list
 
 // grocceryList = {
-//  rice : {
+//  ingredient1 : {
+//    name: rice,
 //    amount : 1,
 //    units : "cups"
 //  },
 //
-//  chicken : {
+//  ingredient2 : {
+//    name: chicken,
 //    amount : 2,
 //    units : "breasts"
 //  }
