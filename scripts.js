@@ -92,6 +92,7 @@ function createRecipes() {
       }
     }
   };
+  //  console.log(JSON.stringify(recipes));
   return recipes;
 }
 
@@ -130,6 +131,7 @@ function createItemList(recipes) {
       ingredientCounter++;
     }
   }
+  console.log(JSON.stringify(shoppingList));
 }
 
 function createGroceryList(itemList) {
@@ -137,8 +139,10 @@ function createGroceryList(itemList) {
 }
 
 function main() {
-  createGroceryList(createItemList(createRecipes()));
+
 }
+
+createItemList(createRecipes());
 
 // 1. create recipe object
 // 2. create object containing needed ingredients, amounts, and units
