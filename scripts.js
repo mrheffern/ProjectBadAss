@@ -116,17 +116,20 @@ function createItemList(recipes) {
       currentIngredientUnits = recipes[item].ingredients[key].units;
       console.log("currentIngredientUnits: " + currentIngredientUnits);
       // loops through each item currently in grocery list to check if item is already on list in some amount
+      // breaks out of loop if item is found
       for (var shoppingListItem in shoppingList) {
         // if item is on list mark item as found
         console.log("if " + shoppingList[shoppingListItem]["name"] + " == " + currentIngredientName);
         if (shoppingList[shoppingListItem]["name"] == currentIngredientName) {
           console.log("item already in list");
           ingredientFoundInList = 1;
+          break;
         }
       }
       // if item has been found on list merely add new amount needed to existing amount
       if (ingredientFoundInList) {
         console.log("increased " + currentIngredientName + " amount");
+        console.log("previous amount: " + shoppingList[shoppingListItem].amount);
         shoppingList[shoppingListItem]["amount"] += currentIngredientAmount;
         console.log("new amount: " + shoppingList[shoppingListItem]["amount"]);
       }
@@ -134,6 +137,7 @@ function createItemList(recipes) {
       else {
         console.log("new item " + currentIngredientName + " added");
         shoppingList["ingredient" + ingredientCounter] = recipes[item].ingredients[key];
+        console.log("current " + shoppingList["ingredient" + ingredientCounter].name + " amount: " + shoppingList["ingredient" + ingredientCounter].amount);
       }
       // after adding ingredient or increasing amount, increment ingredient counter
       ingredientCounter++;
