@@ -106,30 +106,41 @@ function createItemList(recipes) {
   var ingredientFoundInList = 0;
   // loops through each recipe
   for (var item in recipes){
+    console.log("current recipe: " + item + "\n\n");
     // loops through each ingredient in current recipe
     for (var key in recipes[item].ingredients) {
-      ingredientFoundInList = 0;
       currentIngredientName = recipes[item].ingredients[key].name;
+      console.log("\ncurrentIngredientName: " + currentIngredientName);
       currentIngredientAmount = recipes[item].ingredients[key].amount;
+      console.log("currentIngredientAmount: " + currentIngredientAmount);
       currentIngredientUnits = recipes[item].ingredients[key].units;
+      console.log("currentIngredientUnits: " + currentIngredientUnits);
       // loops through each item currently in grocery list to check if item is already on list in some amount
       for (var shoppingListItem in shoppingList) {
         // if item is on list mark item as found
-        if (shoppingList[shoppingListItem][name] == currentIngredientName) {
+        console.log("if " + shoppingList[shoppingListItem]["name"] + " == " + currentIngredientName);
+        if (shoppingList[shoppingListItem]["name"] == currentIngredientName) {
+          console.log("item already in list");
           ingredientFoundInList = 1;
         }
       }
       // if item has been found on list merely add new amount needed to existing amount
       if (ingredientFoundInList) {
-        shoppingList[shoppingListItem][amount] += currentIngredientAmount;
+        console.log("increased " + currentIngredientName + " amount");
+        shoppingList[shoppingListItem]["amount"] += currentIngredientAmount;
+        console.log("new amount: " + shoppingList[shoppingListItem]["amount"]);
       }
       // if item is not on list currently, copy ingredient information to grocery list
       else {
+        console.log("new item " + currentIngredientName + " added");
         shoppingList["ingredient" + ingredientCounter] = recipes[item].ingredients[key];
       }
       // after adding ingredient or increasing amount, increment ingredient counter
       ingredientCounter++;
+      // reset value for next iteration
+      ingredientFoundInList = 0;
     }
+    console.log("\n\n\n\n\n\n");
   }
   console.log(JSON.stringify(shoppingList));
 }
