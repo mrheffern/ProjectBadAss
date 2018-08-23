@@ -23,14 +23,17 @@
         <nav>
           <div class="logo">Project Badass</div>
           <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#meals">Meals</a></li>
-              <li><a href="#">Healthy</a></li>
-              <li><a href="#first">Contact</a></li>
-              <li><a class= "active" href="#" >Leave Feedback</a></li>
+              <li><a href="#top">Home</a></li>
+              <li><a href="#mealsNav">Meals</a></li>
+              <li><a href="#projNav">Our Project</a></li>
+              <li><a class="active" href="#contactNav">Contact</a></li>
           </ul>
         </nav>
-        <section class="sec1"></section>
+        <section class="sec1" >
+          <div class="mainLogo">
+          <h1> Project Badass </h1>
+        </div>
+        </section>
         <div class="container">
         <section class="content">
             <p>Our main goal at Project Badass is to provide delicious meals. Duis aute irure dolor in
@@ -47,7 +50,9 @@
 
           </section>
 
-
+          <a id="mealsNav"></a>
+          <div class="clearfix-padding"> </div>
+          <div class="clearfix-padding"> </div>
           <main class="meals"> <!--going w/ a top 8 for grid-->
 
             <article class="recipe">
@@ -111,32 +116,25 @@
 
               <div>
                 <hr />
-                <div class="clearfix-padding"> </div>
+                <a id="projNav"></a>
+                <div class="clearfix-padding"></div>
+
                 <section class="application">
                   <h1>Project Badass</h1>
                   <p>Use the slider to select number of people eating & Use the dropdown to select the recipes </p>
-                  <div class="slide-container">
-                  <input type="range" min="1" max="100" value="1" class="slider" id="myrange">
-                </div>
-                <div class="dropdown">
-                  <button class="dropbtn">Recipes</button>
-                  <div class="dropdown-content">
-                    <a href="#">Cheesey Chicken</a>
-                    <a href="#">Chicken Bowls</a>
-                    <a href="#">Chicken Chicken</a>
-                  </div>
-                </div>
+
                 </section>
                 <div class="clearfix-padding"> </div>
-                <hr />
+                <hr /><a id="contactNav"></a>
               </div>
 
 <!--new stuff 6/18 tags need css -->
+
           <div class="clearfix-padding"></div>
             <section class="left-col">
               <h1> Leave FEEDback </h1>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod <del> tempor incididunt</del> <ins>ut labore et</ins> dolore magna aliqua.
+                sed do eiusmodtempor incididuntut labore et dolore magna aliqua.
                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                  ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
                   voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
@@ -167,28 +165,6 @@
 
 
               </form>
-
-              <!-- Form Attempt 1, looks like TRASH
-              <form id="simpleForm">
-                   <div>
-                    <label for="myName">Name:</label>
-                    <input type="text" name="myName" id="myName">
-
-                  </div>
-                  <div>
-                    <label for="email">Email:</label>
-                    <input type="text" name="email" id="email">
-                  </div>
-                  <div>
-                    <label for="comments">Comments</label>
-                    <textarea name="comments" id="comments" rows="5" cols="50"></textarea>
-                  </div>
-                  <div id="theSubmit">
-                    <input type="submit" value="  Send Now  ">
-                  </div>
-              </form> -->
-
-
             </section>
 
             </div>
