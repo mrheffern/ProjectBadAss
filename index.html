@@ -116,21 +116,37 @@
 
               <div>
                 <hr />
-                <a id="projNav"></a>
-                <div class="clearfix-padding"></div>
 
+                <a id="projNav"></a>
+
+                <div class="clearfix-padding"></div>
+            <!--this form is currently breaking all forms on the page due to css rules input, textarea -->
                 <section class="application">
                   <h1>Project Badass</h1>
-                  <p>Use the slider to select number of people eating & Use the dropdown to select the recipes </p>
-
+                  <p>Enter in the number of people eating & Use the dropdown to select the recipes </p>
+                  <form action="#" method="post">
+                    <p># of people<input type="number" id="peopleNumb"/></p>
+                  </form>
+                  <form action="#">
+                    <p>Recipes<select name="recipes" size="3" multiple="multiple">
+                      <option value="cheesyChicken" selected="selected">Cheesy Chicken</option>
+                      <option value="chickenRiceBowls">Chicken Rice Bowls</option>
+                      <option value="scrambledEggs">Scrambled Eggs</option>
+                    </select>
+                    <input type="submit" value="Submit">
+                  </form>
                 </section>
+
                 <div class="clearfix-padding"> </div>
+
                 <hr /><a id="contactNav"></a>
+
               </div>
 
 <!--new stuff 6/18 tags need css -->
 
           <div class="clearfix-padding"></div>
+          <div>
             <section class="left-col">
               <h1> Leave FEEDback </h1>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -162,8 +178,6 @@
                 <textarea name="message" id="message" rows="5" cols="50"></textarea>
 
                 <input type="submit" value="Send" id="sendbtn">
-
-
               </form>
             </section>
 

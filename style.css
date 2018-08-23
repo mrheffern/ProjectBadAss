@@ -91,6 +91,7 @@ nav ul li a.active {
   text-align: center;
   font-weight: 700;
   font-size: 350%;
+  text-shadow: 2px 2px 4px #fff;
 }
 
 .content {
@@ -235,15 +236,6 @@ label {
 }
 #feedback-label{
   padding-top: 15px;
-}
-
-input, textarea {
-  margin-top: 12px;
-}
-
-#theSubmit{
-  padding: 15px;
-  text-align: center;
 }
 
 /* Application inputs */
