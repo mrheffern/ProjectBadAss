@@ -100,7 +100,7 @@ function createRecipes() {
 function createItemList(recipes) {
   var currentIngredientName = "";
   var currentIngredientAmount = 0;
-  var ingredientDetails = {};
+  var currentIngredientUnits = "";
   var ingredientCounter = 0;
   var shoppingList = {};
   var ingredientFoundInList = 0;
@@ -149,7 +149,7 @@ function createItemList(recipes) {
   console.log(JSON.stringify(shoppingList));
 }
 
-function createGroceryList(itemList) {
+function convertUnits(units1, value1, units2, value2) {
 
 }
 
@@ -165,7 +165,10 @@ createItemList(createRecipes());
 //  + loop through each recipe ingredients
 //  + loop through shoppingList
 //  - check if currentIngredientName is already in list
-//  - if it is, add amounts
+//  - if it is, compare units
+//  - if units are the same add amounts
+//  - if units are not the same feed amounts and units in convertUnits()
+//  - take return from convertUnits() and add amounts (update units if needed)
 //  - if it is not, add to list as ingredientX
 // 3. display groccery list
 
