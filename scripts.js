@@ -128,10 +128,21 @@ function createItemList(recipes) {
       }
       // if item has been found on list merely add new amount needed to existing amount
       if (ingredientFoundInList) {
-        console.log("increased " + currentIngredientName + " amount");
-        console.log("previous amount: " + shoppingList[shoppingListItem].amount);
-        shoppingList[shoppingListItem]["amount"] += currentIngredientAmount;
-        console.log("new amount: " + shoppingList[shoppingListItem]["amount"]);
+        //if item already on list is to taste, replace item data with new values
+//        console.log("current shoppingList state: " + JSON.stringify(shoppingList));
+        console.log("existing amount: " + shoppingList[shoppingListItem].amount);
+        if (shoppingList[shoppingListItem].amount == "to taste") {
+          if (currentIngredientAmount != "to taste") {
+            shoppingList[shoppingListItem] = recipes[item].ingredients[key];
+          }
+        }
+
+        else if (currentIngredientAmount != "to taste") {
+          console.log("increased " + currentIngredientName + " amount");
+          console.log("previous amount: " + shoppingList[shoppingListItem].amount);
+          shoppingList[shoppingListItem]["amount"] += currentIngredientAmount;
+          console.log("new amount: " + shoppingList[shoppingListItem]["amount"]);
+        }
       }
       // if item is not on list currently, copy ingredient information to grocery list
       else {
@@ -153,9 +164,6 @@ function convertUnits(units1, value1, units2, value2) {
 
 }
 
-function main() {
-
-}
 
 createItemList(createRecipes());
 
