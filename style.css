@@ -242,15 +242,44 @@ label {
 
 .application {
   margin-left: 7rem;
+  padding: 1rem;
+  border: 2px solid #dd1343;
+  border-radius: 1rem;
+  float: left;
 }
 
+#peopleNumb{
+  width: 5rem;
+}
+
+#recipes{
+
+}
+
+#submit{
+  width: 5rem;
+  margin: auto;
+  border-radius: 1rem;
+  text-align: center;
+  background-color: #dd1343;
+}
+
+#submit:hover{
+  background-color: #ff0000;
+}
+
+
+
+
+
+/*
 .slidecontainer {
     width: 40%;
     border: 2px solid #dd1343;
     padding: 2rem;
     border-radius: 1rem;
 
-}
+} */
 
 .social h4 {
   color: #fff;
@@ -266,10 +295,8 @@ label {
   padding-top: 20px;
   margin-right: 7rem;
   margin-left: 7rem;
-
-
-
 }
+
 .social a {
   padding-left: 5rem;
   padding-right: 5rem;
