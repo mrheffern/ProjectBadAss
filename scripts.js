@@ -126,17 +126,16 @@ function createItemList(recipes) {
           break;
         }
       }
-      // if item has been found on list merely add new amount needed to existing amount
+      // if item has been found on list, move forward to checking for 'to taste' condition
       if (ingredientFoundInList) {
-        //if item already on list is to taste, replace item data with new values
-//        console.log("current shoppingList state: " + JSON.stringify(shoppingList));
+        // if only the item already on list is to taste, replace item data with new values
         console.log("existing amount: " + shoppingList[shoppingListItem].amount);
         if (shoppingList[shoppingListItem].amount == "to taste") {
           if (currentIngredientAmount != "to taste") {
             shoppingList[shoppingListItem] = recipes[item].ingredients[key];
           }
         }
-
+        // if neither the existing or new item is 'to taste', simply add amounts together
         else if (currentIngredientAmount != "to taste") {
           console.log("increased " + currentIngredientName + " amount");
           console.log("previous amount: " + shoppingList[shoppingListItem].amount);
