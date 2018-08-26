@@ -24,6 +24,44 @@ function createRecipes() {
           name : "chicken",
           amount : 1,
           units : "breast(s)"
+        },
+
+        ingredient2 : {
+          name : "rice",
+          amount : 0.25,
+          units : "cup(s)"
+        },
+
+        ingredient3 : {
+          name : "cilantro"
+        },
+
+        ingredient4 : {
+          name : "onion"
+        },
+
+        ingredient5 : {
+          name : "black beans"
+        },
+
+        ingredient6 : {
+          name : "tomato"
+        },
+
+        ingredient7 : {
+          name : "diced green chilis"
+        },
+
+        ingredient8 : {
+          name : "lime"
+        },
+
+        ingredient9 : {
+          name : "salsa"
+        },
+
+        ingredient10 : {
+          name : "sour cream"
         }
       }
     },
@@ -88,6 +126,26 @@ function createRecipes() {
         ingredient6 : {
           name : "salt",
           amount : "to taste"
+        }
+      }
+    }
+
+    salmon : {
+      ingredients : {
+
+        ingredient1 : {
+          name : "salmon",
+          amount : 0.5,
+          units : "pound(s)"
+        },
+
+        ingredient2 : {
+          name : "lemon",
+          amount : 3
+        },
+
+        ingredient3 : {
+
         }
       }
     }
