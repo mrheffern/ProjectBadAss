@@ -1,4 +1,4 @@
-function createRecipes() {
+function createRecipes(householdSize) {
   var recipes = {
     scrambledEggs : {
       name : "Scrambled Eggs",
@@ -33,35 +33,48 @@ function createRecipes() {
         },
 
         ingredient3 : {
-          name : "cilantro"
+          name : "cilantro",
+          amount : 0.25,
+          units : "bunch(es)"
         },
 
         ingredient4 : {
-          name : "onion"
+          name : "onion",
+          amount : 0.125
         },
 
         ingredient5 : {
-          name : "black beans"
+          name : "black beans",
+          amount : 0.5,
+          units : "can(s)"
         },
 
         ingredient6 : {
-          name : "tomato"
+          name : "tomato",
+          amount : 0.5
         },
 
         ingredient7 : {
-          name : "diced green chilis"
+          name : "diced green chilis",
+          amount : 0.25,
+          units : "can(s)"
         },
 
         ingredient8 : {
-          name : "lime"
+          name : "lime",
+          amount : 1
         },
 
         ingredient9 : {
-          name : "salsa"
+          name : "salsa",
+          amount : 6,
+          units : "tablespoon(s)"
         },
 
         ingredient10 : {
-          name : "sour cream"
+          name : "sour cream",
+          amount : 2,
+          units : "tablespoon(s)"
         }
       }
     },
@@ -128,9 +141,13 @@ function createRecipes() {
           amount : "to taste"
         }
       }
-    }
+    },
 
     salmon : {
+      name : "Salmon",
+
+      healthy : true,
+
       ingredients : {
 
         ingredient1 : {
@@ -141,15 +158,16 @@ function createRecipes() {
 
         ingredient2 : {
           name : "lemon",
-          amount : 3
-        },
-
-        ingredient3 : {
-
+          amount : 1
         }
       }
     }
   };
+  for (var recipe in recipes) {
+    for (var ingredient in recipes[recipe].ingredients) {
+      recipes[recipe].ingredients[ingredient].amount *= householdSize;
+    }
+  }
   //  console.log(JSON.stringify(recipes));
   return recipes;
 }
