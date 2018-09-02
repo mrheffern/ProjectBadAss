@@ -1,4 +1,18 @@
-function createRecipes(householdSize) {
+// accepts recipes object and number of people eating, multiplies amounts, and returns updated recipe object
+function multiplyByHouseholdSize(recipes, householdSize) {
+  // multiplies recipe amounts by householdSize
+  for (var recipe in recipes) {
+    for (var ingredient in recipes[recipe].ingredients) {
+      if (recipes[recipe].ingredients[ingredient].amount != "to taste") {
+        recipes[recipe].ingredients[ingredient].amount *= householdSize;
+      }
+    }
+  }
+  return recipes;
+}
+
+// creates and returns object with all recipes
+function createRecipes() {
   var recipes = {
     scrambledEggs : {
       name : "Scrambled Eggs",
@@ -163,17 +177,14 @@ function createRecipes(householdSize) {
       }
     }
   };
-  for (var recipe in recipes) {
-    for (var ingredient in recipes[recipe].ingredients) {
-      recipes[recipe].ingredients[ingredient].amount *= householdSize;
-    }
-  }
+
+
   //  console.log(JSON.stringify(recipes));
   return recipes;
 }
 
-// creates object of ingredient keys and amount values
-function createItemList(recipes) {
+// creates object of ingredient keys and amount values and returns shoppingList object
+function createShoppingList(recipes) {
   var currentIngredientName = "";
   var currentIngredientAmount = 0;
   var currentIngredientUnits = "";
@@ -233,14 +244,15 @@ function createItemList(recipes) {
     console.log("\n\n\n\n\n\n");
   }
   console.log(JSON.stringify(shoppingList));
+  return shoppingList;
 }
 
-function convertUnits(units1, value1, units2, value2) {
+function convertUnits(units1, amount1, units2, amount2) {
 
 }
 
 
-createItemList(createRecipes());
+createShoppingList(multiplyByHouseholdSize(createRecipes(), 5));
 
 // 1. create recipe object
 // 2. create object containing needed ingredients, amounts, and units
