@@ -247,11 +247,39 @@ function createShoppingList(recipes) {
   return shoppingList;
 }
 
-function convertToTeaspoons(units1, amount1, units2, amount2) {
+function convertToTeaspoons(recipes) {
+  var currentIngredientAmount = 0;
+  var currentIngredientUnits = "";
 
+  for (var item in recipes) {
+    for (var key in recipes[item].ingredients) {
+      currentIngredientAmount = recipes[item].ingredients[key].amount;
+      currentIngredientUnits = recipes[item].ingredients[key].units;
+      console.log(currentIngredientAmount);
+      console.log(currentIngredientUnits + "\n\n\n");
+
+      switch (currentIngredientUnits) {
+        case 'gallon(s)':
+          currentIngredientAmount *= 768;
+          break;
+        case 'quart(s)':
+          currentIngredientAmount *= 192;
+          break;
+        case 'cup(s)':
+          currentIngredientAmount *= 48;
+          break;
+        case 'ounce(s)':
+          currentIngredientAmount *= 6;
+      }
+
+      recipes[item].ingredients[key].amount = currentIngredientAmount;
+      recipes[item].ingredients[key].units = "teaspoon(s)";
+    }
+  }
+  return recipes;
 }
 
-function convertToOunces(units, amount) {
+function convertToOunces(recipes) {
   if (units == "pounds") {
     var convertedIngredient = {};
     convertedIngredient.units = "ounces";
@@ -265,14 +293,12 @@ function convertToOunces(units, amount) {
   }
 }
 
-function convertToLargestWholeUnit() {
+function convertToLargestWholeUnit(recipes) {
 
 }
 
 
 createShoppingList(multiplyByHouseholdSize(createRecipes(), 5));
-
-convertToOunces("grams", 2);
 
 // 1. create recipe object
 // 2. create object containing needed ingredients, amounts, and units
