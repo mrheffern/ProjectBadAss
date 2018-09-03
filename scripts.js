@@ -247,12 +247,32 @@ function createShoppingList(recipes) {
   return shoppingList;
 }
 
-function convertUnits(units1, amount1, units2, amount2) {
+function convertToTeaspoons(units1, amount1, units2, amount2) {
+
+}
+
+function convertToOunces(units, amount) {
+  if (units == "pounds") {
+    var convertedIngredient = {};
+    convertedIngredient.units = "ounces";
+    convertedIngredient.amount = amount * 16;
+    console.log(amount + " pounds is now " + convertedIngredient.amount + " ounces!");
+    return convertedIngredient;
+  }
+
+  else {
+    console.log("please only use this function to convert pounds to ounces. Please...");
+  }
+}
+
+function convertToLargestWholeUnit() {
 
 }
 
 
 createShoppingList(multiplyByHouseholdSize(createRecipes(), 5));
+
+convertToOunces("grams", 2);
 
 // 1. create recipe object
 // 2. create object containing needed ingredients, amounts, and units
