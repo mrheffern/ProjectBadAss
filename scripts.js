@@ -247,6 +247,7 @@ function createShoppingList(recipes) {
   return shoppingList;
 }
 
+// converts all volume units in recipes to teaspoons for ease of adding
 function convertToTeaspoons(recipes) {
   var currentIngredientAmount = 0;
   var currentIngredientUnits = "";
@@ -279,18 +280,20 @@ function convertToTeaspoons(recipes) {
   return recipes;
 }
 
+// converts pounds in recipes to ounces for ease of adding
 function convertToOunces(recipes) {
-  if (units == "pounds") {
-    var convertedIngredient = {};
-    convertedIngredient.units = "ounces";
-    convertedIngredient.amount = amount * 16;
-    console.log(amount + " pounds is now " + convertedIngredient.amount + " ounces!");
-    return convertedIngredient;
+  // loop through recipes
+  for (var item in recipes) {
+    // loop through ingredients
+    for (var key in recipes[item].ingredients) {
+      if (recipes[item].ingredients[key].units == "pounds") {
+        recipes[item].ingredients[key].units = "ounces";
+        recipes[item].ingredients[key].amount *= 16;
+        return recipes;
+      }
+    }
   }
 
-  else {
-    console.log("please only use this function to convert pounds to ounces. Please...");
-  }
 }
 
 function convertToLargestWholeUnit(recipes) {
@@ -298,7 +301,7 @@ function convertToLargestWholeUnit(recipes) {
 }
 
 
-createShoppingList(multiplyByHouseholdSize(createRecipes(), 5));
+createShoppingList(convertToTeaspoons(multiplyByHouseholdSize(createRecipes(), 6)));
 
 // 1. create recipe object
 // 2. create object containing needed ingredients, amounts, and units
