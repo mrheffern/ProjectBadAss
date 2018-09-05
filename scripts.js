@@ -14,6 +14,18 @@ function multiplyByHouseholdSize(recipes, householdSize) {
 // creates and returns object with all recipes
 function createRecipes() {
   var recipes = {
+    hamburgers : {
+      name : "Hamburgers",
+      healthy : false,
+      ingredients : {
+        ingredient1 : {
+          name : "hamburger",
+          amount : 0.333,
+          units : "pound(s)"
+        }
+      }
+    },
+
     scrambledEggs : {
       name : "Scrambled Eggs",
       healthy : true,
@@ -259,6 +271,7 @@ function convertToTeaspoons(recipes) {
       console.log(currentIngredientAmount);
       console.log(currentIngredientUnits + "\n\n\n");
 
+
       switch (currentIngredientUnits) {
         case 'gallon(s)':
           currentIngredientAmount *= 768;
@@ -269,10 +282,9 @@ function convertToTeaspoons(recipes) {
         case 'cup(s)':
           currentIngredientAmount *= 48;
           break;
-        case 'ounce(s)':
+        case 'fluid ounce(s)':
           currentIngredientAmount *= 6;
       }
-
       recipes[item].ingredients[key].amount = currentIngredientAmount;
       recipes[item].ingredients[key].units = "teaspoon(s)";
     }
@@ -286,8 +298,8 @@ function convertToOunces(recipes) {
   for (var item in recipes) {
     // loop through ingredients
     for (var key in recipes[item].ingredients) {
-      if (recipes[item].ingredients[key].units == "pounds") {
-        recipes[item].ingredients[key].units = "ounces";
+      if (recipes[item].ingredients[key].units == "pound(s)") {
+        recipes[item].ingredients[key].units = "ounce(s)";
         recipes[item].ingredients[key].amount *= 16;
         return recipes;
       }
@@ -302,31 +314,3 @@ function convertToLargestWholeUnit(recipes) {
 
 
 createShoppingList(convertToTeaspoons(multiplyByHouseholdSize(createRecipes(), 6)));
-
-// 1. create recipe object
-// 2. create object containing needed ingredients, amounts, and units
-//  + loop through recipes book
-//  + loop through each recipe ingredients
-//  + loop through shoppingList
-//  - check if currentIngredientName is already in list
-//  - if it is, compare units
-//  - if units are the same add amounts
-//  - if units are not the same feed amounts and units in convertUnits()
-//  - take return from convertUnits() and add amounts (update units if needed)
-//  - if it is not, add to list as ingredientX
-// 3. display groccery list
-
-// grocceryList = {
-//  ingredient1 : {
-//    name: rice,
-//    amount : 1,
-//    units : "cups"
-//  },
-//
-//  ingredient2 : {
-//    name: chicken,
-//    amount : 2,
-//    units : "breasts"
-//  }
-//}
-//.......
