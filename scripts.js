@@ -271,22 +271,27 @@ function convertToTeaspoons(recipes) {
       console.log(currentIngredientAmount);
       console.log(currentIngredientUnits + "\n\n\n");
 
-
       switch (currentIngredientUnits) {
         case 'gallon(s)':
-          currentIngredientAmount *= 768;
-          break;
         case 'quart(s)':
-          currentIngredientAmount *= 192;
-          break;
         case 'cup(s)':
-          currentIngredientAmount *= 48;
-          break;
         case 'fluid ounce(s)':
-          currentIngredientAmount *= 6;
+          switch (currentIngredientUnits) {
+            case 'gallon(s)':
+              currentIngredientAmount *= 768;
+              break;
+            case 'quart(s)':
+              currentIngredientAmount *= 192;
+              break;
+            case 'cup(s)':
+              currentIngredientAmount *= 48;
+              break;
+            case 'fluid ounce(s)':
+              currentIngredientAmount *= 6;
+          }
+        recipes[item].ingredients[key].amount = currentIngredientAmount;
+        recipes[item].ingredients[key].units = "teaspoon(s)";
       }
-      recipes[item].ingredients[key].amount = currentIngredientAmount;
-      recipes[item].ingredients[key].units = "teaspoon(s)";
     }
   }
   return recipes;
