@@ -274,8 +274,10 @@ function convertToTeaspoons(recipes) {
       switch (currentIngredientUnits) {
         case 'gallon(s)':
         case 'quart(s)':
+        case 'pint(s)':
         case 'cup(s)':
         case 'fluid ounce(s)':
+        case 'tablespoon(s)':
           switch (currentIngredientUnits) {
             case 'gallon(s)':
               currentIngredientAmount *= 768;
@@ -283,11 +285,16 @@ function convertToTeaspoons(recipes) {
             case 'quart(s)':
               currentIngredientAmount *= 192;
               break;
+            case 'pint(s)':
+              currentIngredientAmount *= 96;
             case 'cup(s)':
               currentIngredientAmount *= 48;
               break;
             case 'fluid ounce(s)':
               currentIngredientAmount *= 6;
+              break;
+            case 'tablespoon(s)':
+              currentIngredientAmount *= 3;
           }
         recipes[item].ingredients[key].amount = currentIngredientAmount;
         recipes[item].ingredients[key].units = "teaspoon(s)";
@@ -314,8 +321,51 @@ function convertToOunces(recipes) {
 }
 
 function convertToLargestWholeUnit(recipes) {
+  var currentIngredientAmount = 0;
+  var currentIngredientUnits = "";
 
+  for (var item in recipes) {
+    for (var ingredient in recipes[item].ingredients) {
+      currentIngredientAmount = recipes[item].ingredients[ingredient].amount;
+      switch (recipes[item].ingredients[ingredient].units){
+        case 'teaspoon(s)':
+          switch (currentIngredientAmount) {
+            case (currentIngredientAmount / 768 >= 1):
+              currentIngredientAmount /= 768;
+              currentIngredientUnits = "gallon(s)";
+              break;
+            case (currentIngredientAmount / 192 >= 1):
+              currentIngredientAmount /= 192;
+              currentIngredientUnits = "quart(s)";
+              break;
+            case (currentIngredientAmount / 96 >= 1):
+              currentIngredientAmount /= 96;
+              currentIngredientUnits = "pint(s)";
+              break;
+            case (currentIngredientAmount / 48 >= 1):
+              currentIngredientAmount /= 48;
+              currentIngredientUnits = "cup(s)";
+              break;
+            case (currentIngredientAmount / 6 >= 1):
+              currentIngredientAmount /= 6;
+              currentIngredientUnits = "fluid ounce(s)";
+              break;
+              case (currentIngredientAmount / 3 >= 1):
+              currentIngredientAmount /= 3;
+              currentIngredientUnits = "tablespoon(s)";
+          }
+        case (recipes[item].ingredients[ingredient].units == 'ounce(s)' && currentIngredientAmount / 16 >= 1):
+          currentIngredientAmount /= 16;
+          currentIngredientUnits = "pound(s)";
+
+      recipes[item].ingredients[ingredient].amount = currentIngredientAmount;
+      recipes[item].ingredients[ingredient].units = currentIngredientUnits;
+      }
+    }
+  }
+  console.log("\n\n\n\n\n\n" + JSON.stringify(recipes));
+  return recipes;
 }
 
 
-createShoppingList(convertToTeaspoons(multiplyByHouseholdSize(createRecipes(), 6)));
+convertToLargestWholeUnit(createShoppingList(convertToOunces(convertToTeaspoons(multiplyByHouseholdSize(createRecipes(), 10)))));
