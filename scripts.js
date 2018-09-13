@@ -320,19 +320,23 @@ function convertToOunces(recipes) {
 
 }
 
-function convertToLargestWholeUnit(recipes) {
+function convertToLargestWholeUnit(shoppingList) {
   var currentIngredientAmount = 0;
   var currentIngredientUnits = "";
 
-  for (var item in recipes) {
-    for (var ingredient in recipes[item].ingredients) {
-      currentIngredientAmount = recipes[item].ingredients[ingredient].amount;
-      switch (recipes[item].ingredients[ingredient].units){
+  for (var item in shoppingList) {
+      currentIngredientAmount = shoppingList[item].amount;
+      console.log(`current units: ${shoppingList[item].units}`);
+      console.log(`current amount: ${currentIngredientAmount}`);
+      switch (shoppingList[item].units){
         case 'teaspoon(s)':
-          switch (currentIngredientAmount) {
+        console.log(`yup, its teaspoon(s)`);
+          switch (true) {
             case (currentIngredientAmount / 768 >= 1):
+              console.log(`yup, its gallon(s)`);
               currentIngredientAmount /= 768;
               currentIngredientUnits = "gallon(s)";
+              console.log(`currentIngredientAmount: ${currentIngredientAmount}`);
               break;
             case (currentIngredientAmount / 192 >= 1):
               currentIngredientAmount /= 192;
@@ -350,21 +354,23 @@ function convertToLargestWholeUnit(recipes) {
               currentIngredientAmount /= 6;
               currentIngredientUnits = "fluid ounce(s)";
               break;
-              case (currentIngredientAmount / 3 >= 1):
+            case (currentIngredientAmount / 3 >= 1):
               currentIngredientAmount /= 3;
               currentIngredientUnits = "tablespoon(s)";
+            default:
+              console.log(`switch defaulted`);
           }
-        case (recipes[item].ingredients[ingredient].units == 'ounce(s)' && currentIngredientAmount / 16 >= 1):
+          break;
+        case (shoppingList[item].units == 'ounce(s)' && currentIngredientAmount / 16 >= 1):
           currentIngredientAmount /= 16;
           currentIngredientUnits = "pound(s)";
-
-      recipes[item].ingredients[ingredient].amount = currentIngredientAmount;
-      recipes[item].ingredients[ingredient].units = currentIngredientUnits;
-      }
+          break;
     }
+    shoppingList[item].amount = currentIngredientAmount;
+    shoppingList[item].units = currentIngredientUnits;
   }
-  console.log("\n\n\n\n\n\n" + JSON.stringify(recipes));
-  return recipes;
+  console.log("\n\n\n\n\n\n" + JSON.stringify(shoppingList));
+  return shoppingList;
 }
 
 
