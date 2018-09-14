@@ -171,11 +171,8 @@ function createRecipes() {
 
     salmon : {
       name : "Salmon",
-
       healthy : true,
-
       ingredients : {
-
         ingredient1 : {
           name : "salmon",
           amount : 0.5,
@@ -306,18 +303,20 @@ function convertToTeaspoons(recipes) {
 
 // converts pounds in recipes to ounces for ease of adding
 function convertToOunces(recipes) {
+  console.log(`\n\n\nstarted ounce conversion`);
   // loop through recipes
   for (var item in recipes) {
     // loop through ingredients
     for (var key in recipes[item].ingredients) {
+      console.log(`ingredient name: ${recipes[item].ingredients[key].name}`);
       if (recipes[item].ingredients[key].units == "pound(s)") {
+        console.log(`we found pounds bitch!`);
         recipes[item].ingredients[key].units = "ounce(s)";
         recipes[item].ingredients[key].amount *= 16;
-        return recipes;
       }
     }
   }
-
+  return recipes;
 }
 
 function convertToLargestWholeUnit(shoppingList) {
@@ -326,10 +325,11 @@ function convertToLargestWholeUnit(shoppingList) {
 
   for (var item in shoppingList) {
       currentIngredientAmount = shoppingList[item].amount;
+      console.log(`\ncurrent item: ${shoppingList[item].name}`);
       console.log(`current units: ${shoppingList[item].units}`);
       console.log(`current amount: ${currentIngredientAmount}`);
-      switch (shoppingList[item].units){
-        case 'teaspoon(s)':
+      switch (true){
+        case (shoppingList[item].units == 'teaspoon(s)'):
         console.log(`yup, its teaspoon(s)`);
           switch (true) {
             case (currentIngredientAmount / 768 >= 1):
@@ -366,8 +366,12 @@ function convertToLargestWholeUnit(shoppingList) {
           currentIngredientUnits = "pound(s)";
           break;
     }
-    shoppingList[item].amount = currentIngredientAmount;
-    shoppingList[item].units = currentIngredientUnits;
+    switch (shoppingList[item].units) {
+      case 'teaspoon(s)':
+      case 'ounce(s)':
+        shoppingList[item].amount = currentIngredientAmount;
+        shoppingList[item].units = currentIngredientUnits;
+  }
   }
   console.log("\n\n\n\n\n\n" + JSON.stringify(shoppingList));
   return shoppingList;
