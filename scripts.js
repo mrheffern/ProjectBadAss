@@ -365,6 +365,8 @@ function convertToLargestWholeUnit(shoppingList) {
           currentIngredientAmount /= 16;
           currentIngredientUnits = "pound(s)";
           break;
+        default:
+          currentIngredientUnits = shoppingList[item].units;
     }
     switch (shoppingList[item].units) {
       case 'teaspoon(s)':
@@ -378,4 +380,4 @@ function convertToLargestWholeUnit(shoppingList) {
 }
 
 
-convertToLargestWholeUnit(createShoppingList(convertToOunces(convertToTeaspoons(multiplyByHouseholdSize(createRecipes(), 10)))));
+convertToLargestWholeUnit(createShoppingList(convertToOunces(convertToTeaspoons(multiplyByHouseholdSize(createRecipes(), 1)))));
