@@ -1,6 +1,7 @@
 <html>
   <head>
       <meta charset="utf-8">
+      	<meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title>Project Badass</title>
       <link rel="stylesheet" type="text/css" href="style.css">
       <link href="https://fonts.googleapis.com/css?family=Quicksand:500" rel="stylesheet">
@@ -22,14 +23,18 @@
         <nav>
           <div class="logo">Project Badass</div>
           <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#meals">Meals</a></li>
-              <li><a href="#">Healthy</a></li>
-              <li><a href="#first">Contact</a></li>
-              <li><a class= "active" href="#" >Leave Feedback</a></li>
+              <li><a href="#top">Home</a></li>
+              <li><a href="#mealsNav">Meals</a></li>
+              <li><a href="#projNav">Our Project</a></li>
+              <li><a class="active" href="#contactNav">Contact</a></li>
           </ul>
         </nav>
-        <section class="sec1"></section>
+        <section class="sec1" >
+          <div class="mainLogo">
+          <h1> Project Badass </h1>
+        </div>
+        </section>
+        <div class="container">
         <section class="content">
             <p>Our main goal at Project Badass is to provide delicious meals. Duis aute irure dolor in
               reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
@@ -45,6 +50,9 @@
 
           </section>
 
+          <a id="mealsNav"></a>
+          <div class="clearfix-padding"> </div>
+          <div class="clearfix-padding"> </div>
           <main class="meals"> <!--going w/ a top 8 for grid-->
 
             <article class="recipe">
@@ -95,10 +103,92 @@
               <button>See Recipe</button>
             </article>
 
+            <article class="recipe">
+              <h1>Chocolate Salty Balls</h1>
+              <img src="#.jpg">
+              <button>See Recipe</button>
+            </article>
+
           </main>
+        </div>
+<div>
 
 
-          <footer class="first">
+              <div>
+                <hr />
+
+                <a id="projNav"></a>
+
+                <div class="clearfix-padding"></div>
+            <!--this form is currently breaking all forms on the page due to css rules input, textarea -->
+                <section class="application">
+                  <h1>Project Badass</h1>
+                  <p>Enter in the number of people eating & Use the dropdown to select the recipes </p>
+                  <form action="#" method="post">
+                    <p># of people<input type="number" id="peopleNumb"/></p>
+                  </form>
+                  <form action="#">
+                    <p>Recipes: *Hold control (cmd for Mac users) to select multiple recipies * </p><select name="recipes" size="3" multiple="multiple" id="recipes">
+                      <option value="cheesyChicken" selected="selected">Cheesy Chicken</option>
+                      <option value="chickenRiceBowls">Chicken Rice Bowls</option>
+                      <option value="scrambledEggs">Scrambled Eggs</option>
+                    </select>
+                    <input type="submit" value="Submit" id="submit">
+                  </form>
+                </section>
+
+                <div class="clearfix-padding"> </div>
+
+                <hr /><a id="contactNav"></a>
+
+              </div>
+
+<!--new stuff 6/18 tags need css -->
+
+          <div class="clearfix-padding"></div>
+          <div>
+            <section class="left-col">
+              <h1> Leave FEEDback </h1>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmodtempor incididuntut labore et dolore magna aliqua.
+                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                 ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                  voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                   occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+                    id est laborum
+              </p>
+            </section>
+            <section class="sidebar">
+              <form action="submit-form-data"> <!--where is the data going to go? maybe make a project badass email address.. -->
+                <label for="name" id="name-label">
+                  Name
+                </label>
+                <input type="text" id="name">
+
+                <label for="email" id="email-label">
+                  Email
+                </label>
+
+                <input type="email" id="email">
+
+                <label for="message" id="feedback-label">
+                 Feedback
+                </label>
+
+                <textarea name="message" id="message" rows="5" cols="50"></textarea>
+
+                <input type="submit" value="Send" id="sendbtn">
+              </form>
+            </section>
+
+            </div>
+
+
+
+<!-- End New STuff 6/18 -->
+<div>
+    <div class="clearfix-padding"> </div>
+          <section class="social">
             <div class="container">
                   <h4>Follow Project Badass</h4>
                   <p>Follow us on social media for special offers</p>
@@ -116,7 +206,9 @@
                   </a>
                 </div>
 
-          </footer>
+          </section>
+
+        </div>
 
           <footer class="second">
           <p> &copy; Project Badass </p>
