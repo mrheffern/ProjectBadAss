@@ -1,6 +1,9 @@
-$(document).ready(function() {
-  
-});
+
+
+//   <option value="cheesyChicken" selected="selected">Cheesy Chicken</option>
+// when page loads
+// loop through Recipes
+// append recipe name to select box
 
 // accepts recipes object and number of people eating, multiplies amounts, and returns updated recipe object
 function multiplyByHouseholdSize(recipes, householdSize) {
@@ -409,4 +412,13 @@ function convertToLargerUnit(targetUnit, currentAmount) {
   return newAmount;
 }
 
-convertToLargestWholeUnit(createShoppingList(convertToOunces(convertToTeaspoons(multiplyByHouseholdSize(createRecipes(), 1)))));
+$(document).ready(function() {
+  let recipes = createRecipes();
+
+  for (let item in recipes) {
+    console.log('looping yo');
+    $("#recipes").append(`<option value="${item}">${recipes[item].name}</option>`);
+  }
+});
+
+//convertToLargestWholeUnit(createShoppingList(convertToOunces(convertToTeaspoons(multiplyByHouseholdSize(createRecipes(), 1)))));
