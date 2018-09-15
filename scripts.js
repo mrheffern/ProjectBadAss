@@ -1,3 +1,7 @@
+$(document).ready(function() {
+  
+});
+
 // accepts recipes object and number of people eating, multiplies amounts, and returns updated recipe object
 function multiplyByHouseholdSize(recipes, householdSize) {
   // multiplies recipe amounts by householdSize
@@ -379,5 +383,30 @@ function convertToLargestWholeUnit(shoppingList) {
   return shoppingList;
 }
 
+function convertToLargerUnit(targetUnit, currentAmount) {
+
+  let newAmount = 0;
+  switch (targetUnit) {
+    case 'tablespoon(s)':
+      newAmount = currentAmount / 3;
+      break;
+    case 'fluid ounce(s)':
+      newAmount = currentAmount / 6;
+      break;
+    case 'cup(s)':
+      newAmount = currentAmount / 48;
+      break;
+    case 'pint(s)':
+      newAmount = currentAmount / 96;
+      break;
+    case 'quart(s)':
+      newAmount = currentAmount / 192;
+      break;
+    case 'gallon(s)':
+      newAmount = currentAmount / 768;
+  }
+  console.log(newAmount);
+  return newAmount;
+}
 
 convertToLargestWholeUnit(createShoppingList(convertToOunces(convertToTeaspoons(multiplyByHouseholdSize(createRecipes(), 1)))));
