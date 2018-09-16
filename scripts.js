@@ -1,5 +1,36 @@
+// accepts recipes object and number of people eating, multiplies amounts, and returns updated recipe object
+function multiplyByHouseholdSize(recipes, householdSize) {
+  // multiplies recipe amounts by householdSize
+  for (var recipe in recipes) {
+    for (var ingredient in recipes[recipe].ingredients) {
+      if (recipes[recipe].ingredients[ingredient].amount != "to taste") {
+        recipes[recipe].ingredients[ingredient].amount *= householdSize;
+      }
+    }
+  }
+  return recipes;
+}
+
+// creates and returns object with all recipes
 function createRecipes() {
   var recipes = {
+    porkEnchiladas : {
+      name : "Pork Enchiladas",
+      img : "pork enchiladas.jpg"
+    },
+
+    hamburgers : {
+      name : "Hamburgers",
+      healthy : false,
+      ingredients : {
+        ingredient1 : {
+          name : "hamburger",
+          amount : 0.333,
+          units : "pound(s)"
+        }
+      }
+    },
+
     scrambledEggs : {
       name : "Scrambled Eggs",
       healthy : true,
@@ -33,41 +64,54 @@ function createRecipes() {
         },
 
         ingredient3 : {
-          name : "cilantro"
+          name : "cilantro",
+          amount : 0.25,
+          units : "bunch(es)"
         },
 
         ingredient4 : {
-          name : "onion"
+          name : "onion",
+          amount : 0.125
         },
 
         ingredient5 : {
-          name : "black beans"
+          name : "black beans",
+          amount : 0.5,
+          units : "can(s)"
         },
 
         ingredient6 : {
-          name : "tomato"
+          name : "tomato",
+          amount : 0.5
         },
 
         ingredient7 : {
-          name : "diced green chilis"
+          name : "diced green chilis",
+          amount : 0.25,
+          units : "can(s)"
         },
 
         ingredient8 : {
-          name : "lime"
+          name : "lime",
+          amount : 1
         },
 
         ingredient9 : {
-          name : "salsa"
+          name : "salsa",
+          amount : 6,
+          units : "tablespoon(s)"
         },
 
         ingredient10 : {
-          name : "sour cream"
+          name : "sour cream",
+          amount : 2,
+          units : "tablespoon(s)"
         }
       }
     },
 
     cereal : {
-      name : "cereal",
+      name : "Cereal",
 
       healthy : false,
 
@@ -128,11 +172,12 @@ function createRecipes() {
           amount : "to taste"
         }
       }
-    }
+    },
 
     salmon : {
+      name : "Salmon",
+      healthy : true,
       ingredients : {
-
         ingredient1 : {
           name : "salmon",
           amount : 0.5,
@@ -141,21 +186,19 @@ function createRecipes() {
 
         ingredient2 : {
           name : "lemon",
-          amount : 3
-        },
-
-        ingredient3 : {
-
+          amount : 1
         }
       }
     }
   };
+
+
   //  console.log(JSON.stringify(recipes));
   return recipes;
 }
 
-// creates object of ingredient keys and amount values
-function createItemList(recipes) {
+// creates object of ingredient keys and amount values and returns shoppingList object
+function createShoppingList(recipes) {
   var currentIngredientName = "";
   var currentIngredientAmount = 0;
   var currentIngredientUnits = "";
@@ -215,39 +258,202 @@ function createItemList(recipes) {
     console.log("\n\n\n\n\n\n");
   }
   console.log(JSON.stringify(shoppingList));
+  return shoppingList;
 }
 
-function convertUnits(units1, value1, units2, value2) {
+// converts all volume units in recipes to teaspoons for ease of adding
+function convertToTeaspoons(recipes) {
+  var currentIngredientAmount = 0;
+  var currentIngredientUnits = "";
+
+  for (var item in recipes) {
+    for (var key in recipes[item].ingredients) {
+      currentIngredientAmount = recipes[item].ingredients[key].amount;
+      currentIngredientUnits = recipes[item].ingredients[key].units;
+      console.log(currentIngredientAmount);
+      console.log(currentIngredientUnits + "\n\n\n");
+
+      switch (currentIngredientUnits) {
+        case 'gallon(s)':
+        case 'quart(s)':
+        case 'pint(s)':
+        case 'cup(s)':
+        case 'fluid ounce(s)':
+        case 'tablespoon(s)':
+          switch (currentIngredientUnits) {
+            case 'gallon(s)':
+              currentIngredientAmount *= 768;
+              break;
+            case 'quart(s)':
+              currentIngredientAmount *= 192;
+              break;
+            case 'pint(s)':
+              currentIngredientAmount *= 96;
+            case 'cup(s)':
+              currentIngredientAmount *= 48;
+              break;
+            case 'fluid ounce(s)':
+              currentIngredientAmount *= 6;
+              break;
+            case 'tablespoon(s)':
+              currentIngredientAmount *= 3;
+          }
+        recipes[item].ingredients[key].amount = currentIngredientAmount;
+        recipes[item].ingredients[key].units = "teaspoon(s)";
+      }
+    }
+  }
+  return recipes;
+}
+
+// converts pounds in recipes to ounces for ease of adding
+function convertToOunces(recipes) {
+  console.log(`\n\n\nstarted ounce conversion`);
+  // loop through recipes
+  for (var item in recipes) {
+    // loop through ingredients
+    for (var key in recipes[item].ingredients) {
+      console.log(`ingredient name: ${recipes[item].ingredients[key].name}`);
+      if (recipes[item].ingredients[key].units == "pound(s)") {
+        console.log(`we found pounds bitch!`);
+        recipes[item].ingredients[key].units = "ounce(s)";
+        recipes[item].ingredients[key].amount *= 16;
+      }
+    }
+  }
+  return recipes;
+}
+
+function convertToLargestWholeUnit(shoppingList) {
+  var currentIngredientAmount = 0;
+  var currentIngredientUnits = "";
+
+  for (var item in shoppingList) {
+      currentIngredientAmount = shoppingList[item].amount;
+      console.log(`\ncurrent item: ${shoppingList[item].name}`);
+      console.log(`current units: ${shoppingList[item].units}`);
+      console.log(`current amount: ${currentIngredientAmount}`);
+      switch (true){
+        case (shoppingList[item].units == 'teaspoon(s)'):
+        console.log(`yup, its teaspoon(s)`);
+          switch (true) {
+            case (currentIngredientAmount / 768 >= 1):
+              console.log(`yup, its gallon(s)`);
+              currentIngredientAmount /= 768;
+              currentIngredientUnits = "gallon(s)";
+              console.log(`currentIngredientAmount: ${currentIngredientAmount}`);
+              break;
+            case (currentIngredientAmount / 192 >= 1):
+              currentIngredientAmount /= 192;
+              currentIngredientUnits = "quart(s)";
+              break;
+            case (currentIngredientAmount / 96 >= 1):
+              currentIngredientAmount /= 96;
+              currentIngredientUnits = "pint(s)";
+              break;
+            case (currentIngredientAmount / 48 >= 1):
+              currentIngredientAmount /= 48;
+              currentIngredientUnits = "cup(s)";
+              break;
+            case (currentIngredientAmount / 6 >= 1):
+              currentIngredientAmount /= 6;
+              currentIngredientUnits = "fluid ounce(s)";
+              break;
+            case (currentIngredientAmount / 3 >= 1):
+              currentIngredientAmount /= 3;
+              currentIngredientUnits = "tablespoon(s)";
+            default:
+              console.log(`switch defaulted`);
+          }
+          break;
+        case (shoppingList[item].units == 'ounce(s)' && currentIngredientAmount / 16 >= 1):
+          currentIngredientAmount /= 16;
+          currentIngredientUnits = "pound(s)";
+          break;
+        default:
+          currentIngredientUnits = shoppingList[item].units;
+    }
+    switch (shoppingList[item].units) {
+      case 'teaspoon(s)':
+      case 'ounce(s)':
+        shoppingList[item].amount = currentIngredientAmount;
+        shoppingList[item].units = currentIngredientUnits;
+  }
+  }
+  console.log("\n\n\n\n\n\n" + JSON.stringify(shoppingList));
+  return shoppingList;
+}
+
+function convertToLargerUnit(targetUnit, currentAmount) {
+
+  let newAmount = 0;
+  switch (targetUnit) {
+    case 'tablespoon(s)':
+      newAmount = currentAmount / 3;
+      break;
+    case 'fluid ounce(s)':
+      newAmount = currentAmount / 6;
+      break;
+    case 'cup(s)':
+      newAmount = currentAmount / 48;
+      break;
+    case 'pint(s)':
+      newAmount = currentAmount / 96;
+      break;
+    case 'quart(s)':
+      newAmount = currentAmount / 192;
+      break;
+    case 'gallon(s)':
+      newAmount = currentAmount / 768;
+  }
+  console.log(newAmount);
+  return newAmount;
+}
+
+function displayRecipeChoices() {
+  let recipes = createRecipes();
+
+  for (let item in recipes) {
+    $(".meals").append(`<article class="recipe">
+      <h1>${recipes[item].name}</h1>
+      <img src="#">
+      <input type="number" id="${item}" class="peopleNumb" min="0" placeholder="Times served per period" style="text-align:center"/>
+    </article>`);
+  }
 
 }
 
+function getSelectedRecipes() {
 
-createItemList(createRecipes());
+  $("#recipes").change(function() {
+    let recipesList = [];
+    $("#recipes option:selected").each(function() {
+      recipesList.push($(this).text());
+    });
+    console.log(JSON.stringify(recipesList));
+    return recipesList;
+  });
+}
 
-// 1. create recipe object
-// 2. create object containing needed ingredients, amounts, and units
-//  + loop through recipes book
-//  + loop through each recipe ingredients
-//  + loop through shoppingList
-//  - check if currentIngredientName is already in list
-//  - if it is, compare units
-//  - if units are the same add amounts
-//  - if units are not the same feed amounts and units in convertUnits()
-//  - take return from convertUnits() and add amounts (update units if needed)
-//  - if it is not, add to list as ingredientX
-// 3. display groccery list
+function displayShoppingList() {
+  $("#submit").click(function() {
+    $(".peopleNumb").each(function() {
 
-// grocceryList = {
-//  ingredient1 : {
-//    name: rice,
-//    amount : 1,
-//    units : "cups"
-//  },
-//
-//  ingredient2 : {
-//    name: chicken,
-//    amount : 2,
-//    units : "breasts"
-//  }
-//}
-//.......
+    });
+  });
+}
+
+$(document).ready(function() {
+  console.log(JSON.stringify(getSelectedRecipes()));
+  displayRecipeChoices();
+  displayShoppingList();
+
+});
+
+
+// increase recipes wanted to above 0
+// click create shopping list
+// loop through each recipe number input
+// if number is greater than 0, create entry on shopping list
+
+//convertToLargestWholeUnit(createShoppingList(convertToOunces(convertToTeaspoons(multiplyByHouseholdSize(createRecipes(), 1)))));

@@ -248,9 +248,11 @@ label {
   float: left;
 }
 
-#peopleNumb{
-  width: 5rem;
+.peopleNumb{
+  width: 15rem;
   margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #recipes{
