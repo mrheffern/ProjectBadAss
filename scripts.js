@@ -1,10 +1,3 @@
-
-
-//   <option value="cheesyChicken" selected="selected">Cheesy Chicken</option>
-// when page loads
-// loop through Recipes
-// append recipe name to select box
-
 // accepts recipes object and number of people eating, multiplies amounts, and returns updated recipe object
 function multiplyByHouseholdSize(recipes, householdSize) {
   // multiplies recipe amounts by householdSize
@@ -21,6 +14,10 @@ function multiplyByHouseholdSize(recipes, householdSize) {
 // creates and returns object with all recipes
 function createRecipes() {
   var recipes = {
+    porkEnchiladas : {
+      name : "Pork Enchiladas"
+    },
+
     hamburgers : {
       name : "Hamburgers",
       healthy : false,
@@ -113,7 +110,7 @@ function createRecipes() {
     },
 
     cereal : {
-      name : "cereal",
+      name : "Cereal",
 
       healthy : false,
 
@@ -412,13 +409,37 @@ function convertToLargerUnit(targetUnit, currentAmount) {
   return newAmount;
 }
 
-$(document).ready(function() {
+function displayRecipeChoices() {
   let recipes = createRecipes();
 
   for (let item in recipes) {
-    console.log('looping yo');
-    $("#recipes").append(`<option value="${item}">${recipes[item].name}</option>`);
+    $(".meals").append(`<article class="recipe">
+      <h1>${recipes[item].name}</h1>
+      <img src="#.jpg">
+      <input type="number" class="peopleNumb"/>
+    </article>`);
   }
+
+}
+
+function getSelectedRecipes() {
+
+  $("#recipes").change(function() {
+    let recipesList = [];
+    $("#recipes option:selected").each(function() {
+      recipesList.push($(this).text());
+    });
+    console.log(JSON.stringify(recipesList));
+    return recipesList;
+  });
+}
+
+$(document).ready(function() {
+  console.log(JSON.stringify(getSelectedRecipes()));
+  displayRecipeChoices();
+
 });
 
+// increase recipes wanted to above 0
+//
 //convertToLargestWholeUnit(createShoppingList(convertToOunces(convertToTeaspoons(multiplyByHouseholdSize(createRecipes(), 1)))));
