@@ -15,7 +15,8 @@ function multiplyByHouseholdSize(recipes, householdSize) {
 function createRecipes() {
   var recipes = {
     porkEnchiladas : {
-      name : "Pork Enchiladas"
+      name : "Pork Enchiladas",
+      img : "pork enchiladas.jpg"
     },
 
     hamburgers : {
@@ -415,8 +416,8 @@ function displayRecipeChoices() {
   for (let item in recipes) {
     $(".meals").append(`<article class="recipe">
       <h1>${recipes[item].name}</h1>
-      <img src="#.jpg">
-      <input type="number" class="peopleNumb"/>
+      <img src="#">
+      <input type="number" id="${item}" class="peopleNumb" min="0" placeholder="Times served per period" style="text-align:center"/>
     </article>`);
   }
 
@@ -434,12 +435,25 @@ function getSelectedRecipes() {
   });
 }
 
+function displayShoppingList() {
+  $("#submit").click(function() {
+    $(".peopleNumb").each(function() {
+
+    });
+  });
+}
+
 $(document).ready(function() {
   console.log(JSON.stringify(getSelectedRecipes()));
   displayRecipeChoices();
+  displayShoppingList();
 
 });
 
+
 // increase recipes wanted to above 0
-//
+// click create shopping list
+// loop through each recipe number input
+// if number is greater than 0, create entry on shopping list
+
 //convertToLargestWholeUnit(createShoppingList(convertToOunces(convertToTeaspoons(multiplyByHouseholdSize(createRecipes(), 1)))));
